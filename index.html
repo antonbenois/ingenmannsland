@@ -3,34 +3,72 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Ingenmannsland — a film by Anton Benois and Tobias Liljedahl.">
-  <title>Ingenmannsland — Anton Benois &amp; Tobias Liljedahl</title>
-  <style>
-    * { box-sizing: border-box; }
-    html { background: #fff; }
-    body {
-      margin: 0;
-      padding: clamp(12px, 3vw, 36px);
-      background: #fff;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    img {
-      display: block;
-      width: auto;
-      height: auto;
-      max-width: 100%;
-      max-height: calc(100vh - 72px);
-      max-height: calc(100svh - 72px);
-      object-fit: contain;
-    }
-  </style>
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Ingenmannsland — a film by Tobias Liljedahl and Anton Benois. Norway, 2026, 18 min 30 sec.">
+  <title>Ingenmannsland — A Film by Tobias Liljedahl & Anton Benois</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@18,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main>
-    <img src="poster.jpg" width="1000" height="1500" alt="Ingenmannsland film poster, by Anton Benois and Tobias Liljedahl">
+  <main class="film-scroll" aria-label="Ingenmannsland — film website">
+    <section class="panel panel-hero" aria-label="Ingenmannsland">
+      <img class="scene" src="images/01-border.jpg" alt="Yellow and red-green border posts on a rocky landscape overlooking distant mountains" fetchpriority="high">
+      <h1 class="overlay title">INGENMANNSLAND</h1>
+    </section>
+    <section class="panel panel-creators" aria-label="Film credits">
+      <img class="scene" src="images/02-landscape.jpg" alt="A wide mountain landscape and shoreline, with a reindeer in the foreground">
+      <p class="overlay creator-line">A FILM BY TOBIAS LILJEDAHL &amp; ANTON BENOIS</p>
+      <p class="overlay metadata"><span>Norway</span><span>2026</span><span>18min30sec</span></p>
+    </section>
+    <section class="panel panel-support" aria-label="Funding acknowledgement">
+      <img class="scene" src="images/03-reindeer.jpg" alt="A reindeer grazing among flowers">
+      <p class="overlay supporting">Supported by Arts Council Norway (Kulturrådet) and Trondheim Municipality</p>
+    </section>
+    <section class="panel panel-voice" aria-label="Voice credit">
+      <img class="scene" src="images/04-drone.jpg" alt="Drone in flight with blurred border markers behind it">
+      <p class="overlay voice">Featuring OLAV as the voice of the border provided by Acapela Group</p>
+    </section>
+    <section class="panel panel-contact" aria-label="Contact">
+      <img class="scene" src="images/05-coast.jpg" alt="Aerial view of a rocky shoreline, a grey sea and two distant border posts">
+      <p class="overlay contact">For inquiries contact antonbenois[at]gmail[dot]com</p>
+    </section>
+    <section class="panel panel-aerial" aria-label="Overhead border landscape">
+      <img class="scene" src="images/06-aerial.jpg" alt="Overhead view of two border posts separated across rocky ground">
+      <p class="overlay trailer-label">↓TRAILER↓</p>
+    </section>
+    <section class="trailer" id="trailer" aria-label="Ingenmannsland trailer">
+      <iframe
+         src="https://player.vimeo.com/video/1244837975?h=d4dbf0d94b&amp;title=0&amp;byline=0&amp;portrait=0"
+         title="Ingenmannsland — trailer"
+        
+         allow="autoplay; fullscreen; picture-in-picture"
+         allowfullscreen>
+      </iframe>
+    </section>
   </main>
+  <script>
+    // Match the artwork's 1920px-wide InDesign title setting (176pt Inter,
+    // tracking +50), then adjust ONLY horizontal scale so the lettering
+    // reaches 5 CSS pixels from each side of the photograph at every screen width.
+    (() => {
+      const panel = document.querySelector('.panel-hero');
+      const title = document.querySelector('.title');
+      if (!panel || !title) return;
+      function fitTitle() {
+        const width = panel.clientWidth;
+        if (!width) return;
+        title.style.fontSize = (176 * width / 1920) + 'px';
+        title.style.setProperty('--title-scale', '1');
+        const natural = title.getBoundingClientRect().width;
+        title.style.setProperty('--title-scale', String(Math.max(0, width - 10) / natural));
+      }
+      const observer = new ResizeObserver(fitTitle);
+      observer.observe(panel);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitTitle);
+      window.addEventListener('load', fitTitle);
+    })();
+  </script>
 </body>
 </html>
