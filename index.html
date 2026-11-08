@@ -70,6 +70,33 @@
     </section>
   </main>
   <script>
+    // First test: Opera desktop uses our directly hosted H.264 trailer.
+    // Every other browser keeps the unchanged, already-tested Vimeo embed.
+    // No browser is asked to download the MP4 unless this check matches.
+    (() => {
+      const isOpera = /(?:\bOPR\/|\bOpera(?:\/| ))/i.test(navigator.userAgent);
+      if (!isOpera) return;
+      const trailer = document.querySelector('.trailer');
+      if (!trailer) return;
+      const video = document.createElement('video');
+      video.controls = true;
+      video.preload = 'metadata';
+      video.playsInline = true;
+      video.poster = './01-border.jpg';
+      video.setAttribute('aria-label', 'Ingenmannsland 60-second trailer');
+      video.style.cssText = 'width:100%;height:100%;display:block;object-fit:contain;background:#000;';
+      video.src = './Ingenmannsland_trailer_60s.mp4';
+      video.addEventListener('error', () => {
+        video.style.display = 'none';
+        const message = document.createElement('div');
+        message.style.cssText = 'position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;color:white;font:16px Arial,sans-serif;text-align:center;';
+        message.textContent = 'Trailer unavailable: check that Ingenmannsland_trailer_60s.mp4 was uploaded to the repository root.';
+        trailer.appendChild(message);
+      });
+      trailer.replaceChildren(video);
+    })();
+  </script>
+  <script>
     // Match the artwork's 1920px-wide InDesign title setting (176pt Inter,
     // tracking +50), then adjust ONLY horizontal scale so the lettering
     // reaches 5 CSS pixels from each side of the photograph at every screen width.
