@@ -1,7 +1,4 @@
-/* Ingenmannsland — InDesign-inspired continuous image scroll.
-   All typography below is selectable HTML; images are separate files.
-   Fonts: Inter 18pt Medium (500), loaded through Google Fonts.
-   No JavaScript; ready for GitHub Pages. */
+/* Ingenmannsland — continuous scroll based on the published site. */
 :root { --gutter: 20px; --text: #fff; }
 * { box-sizing: border-box; }
 html { background: #fff; scroll-behavior: smooth; }
@@ -25,13 +22,23 @@ body { margin: 0; color: var(--text); background: #fff;
 .voice { top: 14.5%; left: 3%; width: 94%; font-size: clamp(13px, 1.875vw, 36px); }
 .contact { top: 50%; left: 3%; width: 94%; font-size: clamp(13px, 1.875vw, 36px); transform: translateY(-50%); }
 .trailer-label { left: 50%; bottom: 50px; width: max-content; font-size: clamp(13px, 1.875vw, 36px); transform: translateX(-50%); }
+/* Poster insertion: photographic lake background is 75% opaque; full-resolution poster is untouched. */
+.poster-label { left: 50%; bottom: 20px; width: max-content;
+  font-size: clamp(13px, 1.875vw, 36px); transform: translateX(-50%); }
+.panel-poster { background: #fff; }
+.panel-poster > .scene { opacity: .75; }
+.poster-link { position: absolute; z-index: 2; top: 50%; left: 50%; height: 94%;
+  aspect-ratio: 2/3; display: block; transform: translate(-50%, -50%);
+  text-decoration: none; cursor: zoom-in; }
+.poster-art { display: block; height: 100%; width: 100%; object-fit: contain;
+  border: 0; box-shadow: none; }
 .trailer { position: relative; width: 100%; aspect-ratio: 16/9; background: #111;
   overflow: hidden; }
 .trailer iframe { width: 100%; height: 100%; display: block; border: 0; }
 @media (max-width: 700px) {
   :root { --gutter: 12px; }
   .title { top: 33.9%; }
-  .creator-line, .metadata, .supporting, .voice, .contact, .trailer-label {
+  .creator-line, .metadata, .supporting, .voice, .contact, .trailer-label, .poster-label {
     font-size: clamp(11px, 2.5vw, 17px); }
   .creator-line { top: 9%; }
   .metadata { gap: 1.8vw; top: 43%; }
@@ -39,6 +46,7 @@ body { margin: 0; color: var(--text); background: #fff;
   .voice { top: 13%; }
   .contact { top: 50%; }
   .trailer-label { bottom: 28px; }
+  .poster-label { bottom: 20px; }
 }
 @media (max-width: 440px) {
   .supporting, .voice { max-width: 94%; }
