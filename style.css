@@ -52,3 +52,48 @@ body { margin: 0; color: var(--text); background: #fff;
   .supporting, .voice { max-width: 94%; }
   .metadata { font-size: 10px; }
 }
+
+/* V6 — single additional ABOUT page. All existing front-page styles retained. */
+.hero-about-link {
+  position: absolute;
+  z-index: 3;
+  top: 10px;
+  right: 10px;
+  color: #222;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-optical-sizing: none;
+  font-size: 21.33px; /* 16pt at 96 CSS px/inch */
+  letter-spacing: .05em;
+  line-height: 1.15;
+  text-decoration: none;
+}
+.hero-about-link:hover, .hero-about-link:focus-visible { text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 700px) { .hero-about-link { font-size: clamp(13px, 3vw, 21.33px); } }
+
+/* About page */
+body.about-page { color: #161616; background: #fff; }
+.about-shell { padding: var(--gutter); width: 100%; }
+.about-header { display: flex; justify-content: flex-end; align-items: flex-start; min-height: 26px; }
+.about-home-link { color: #161616; text-decoration: none; font-size: clamp(13px, 1.1vw, 17px); letter-spacing: .05em; line-height: 1.3; }
+.about-home-link:hover, .about-home-link:focus-visible { text-decoration: underline; text-underline-offset: 4px; }
+.about-copy { max-width: 970px; margin-left: auto; margin-right: auto; }
+.about-intro { padding-top: clamp(38px, 5.5vw, 90px); padding-bottom: clamp(48px, 5vw, 76px); }
+.about-page h1, .about-page h2, .about-page h3 { font-weight: 500; letter-spacing: .05em; }
+.about-page h1, .about-page h2 { font-size: clamp(23px, 2.25vw, 35px); line-height: 1.2; margin: 0 0 36px; }
+.about-page h3 { font-size: clamp(19px, 1.5vw, 25px); line-height: 1.25; margin: 0 0 14px; }
+.about-page p { font-size: clamp(16px, 1.22vw, 20px); line-height: 1.57; letter-spacing: .05em; margin: 0 0 22px; }
+.about-page p:last-child { margin-bottom: 0; }
+.about-page a { color: inherit; }
+.about-page .document-link { text-underline-offset: 3px; }
+.about-photo { margin: 0; width: 100%; }
+.about-photo img { display: block; width: 100%; height: auto; }
+.about-directors { padding-top: 40px; padding-bottom: clamp(80px, 7vw, 130px); }
+.about-bios { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(30px, 4.5vw, 84px); }
+.about-bio p { margin-bottom: 0; }
+@media (max-width: 700px) {
+  .about-intro { padding-top: 40px; padding-bottom: 48px; }
+  .about-directors { padding-top: 40px; }
+  .about-bios { grid-template-columns: 1fr; gap: 38px; }
+  .about-page h1, .about-page h2 { margin-bottom: 25px; }
+}
